@@ -45,7 +45,6 @@ jobs:
           git push origin main
 
   build:
-    needs: check-upstream
     runs-on: ubuntu-latest
 
     steps:
