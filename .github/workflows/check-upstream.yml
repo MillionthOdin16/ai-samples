@@ -40,7 +40,6 @@ jobs:
       
       # Step 5: Merge upstream changes if necessary
       - name: Merge upstream changes
-        if: upstream_changes.outputs.commits != '0'
         run: |
           git merge upstream/main
           git push origin main
