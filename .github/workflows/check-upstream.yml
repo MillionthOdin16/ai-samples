@@ -4,6 +4,7 @@ on:
   schedule:
     # Runs at 12:00 UTC every day
     - cron: '0 12 * * *'
+  workflow_dispatch: # Allows you to manually trigger the workflow
 
 jobs:
   check-upstream:
@@ -72,11 +73,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      # Step 4: Build the APK
+      # Step 4: Make gradlew executable (important for Linux environment)
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      # Step 5: Build the APK
       - name: Build with Gradle
         run: ./gradlew assembleDebug
 
-      # Step 5: Upload APK as artifact
+      # Step 6: Upload APK as artifact
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
