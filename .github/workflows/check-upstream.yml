@@ -30,7 +30,7 @@ jobs:
           git fetch upstream
           git checkout main
 
-      # Step 4: Check if there are new changes in upstream
+      # Step 4: Check for upstream changes
       - name: Check for upstream changes
         id: upstream_changes
         run: |
@@ -38,7 +38,7 @@ jobs:
           UPSTREAM_COMMITS=$(git rev-list HEAD..upstream/main --count)
           echo "::set-output name=commits::$UPSTREAM_COMMITS"
       
-      # Step 5: Merge changes if upstream has new commits
+      # Step 5: Merge upstream changes if necessary
       - name: Merge upstream changes
         if: steps.upstream_changes.outputs.commits != '0'
         run: |
@@ -62,7 +62,11 @@ jobs:
           distribution: 'zulu'
           java-version: '11'
 
-      # Step 3: Cache Gradle dependencies
+      # Step 3: Install Gradle
+      - name: Install Gradle
+        run: sudo apt-get update && sudo apt-get install gradle -y
+
+      # Step 4: Cache Gradle dependencies
       - name: Cache Gradle packages
         uses: actions/cache@v3
         with:
@@ -73,13 +77,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      # Step 4: Make gradlew executable (important for Linux environment)
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
-
-      # Step 5: Build the APK
+      # Step 5: Build the APK with installed Gradle
       - name: Build with Gradle
-        run: ./gradlew assembleDebug
+        run: gradle assembleDebug
 
       # Step 6: Upload APK as artifact
       - name: Upload APK
