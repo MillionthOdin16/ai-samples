@@ -1,13 +1,14 @@
 # Google AI Edge SDK Quickstart
 
-*   [Read more about Google AI Edge SDK](https://developer.android.com/ai/gemini-nano/experimental)
+ 🚨 Important Note: Please follow the [instructions to set up experimental access to Gemini Nano](https://developer.android.com/ai/gemini-nano/experimental) **before running the sample app**. You will need a physical Pixel 9 device to run this sample.
 
 This sample app demonstrates how to use the Google AI Edge SDK to access Gemini
 Nano on Android.
 
 ## Getting Started
 
-*   Run the sample code on your Android device with AICore installed.
+*   Please follow the [instructions to set up experimental access to Gemini Nano](https://developer.android.com/ai/gemini-nano/experimental), specifically the [prerequisites](https://developer.android.com/ai/gemini-nano/experimental#prerequisites) and [updates APKs](https://developer.android.com/ai/gemini-nano/experimental#update-apks) sections.
+*   Run the sample code on your Pixel 9 device after following the setup instructions.
 
 ## License
 
